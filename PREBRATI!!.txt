@@ -1,1 +1,0 @@
-Aplikacija je moj portfolio ki je še vedno v izdelavi. Za pravilno delovanje aplikacije pokrenuti 'npm install' v terminalu. Aplikacija je na mom GitHub profilu: https://github.com/RusCom-ba/portfolio-app.
