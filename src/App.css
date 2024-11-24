@@ -632,9 +632,17 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .logo-text {
   font-size: 18px;
   font-family: Centra, sans-serif;
+  white-space: pre-wrap;
+  overflow: hidden;
+  display: inline-block;
   font-weight: 200;
   color: #fff;
   margin: 0 0px;
 }
 
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
 

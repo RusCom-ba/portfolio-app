@@ -14,8 +14,10 @@ import {
 
 export const NavBar = () => {
 
+  const [textIndex, setTextIndex] = useState(0);
   const [activeLink, setActiveLink] = useState('home');
   const [scrolled, setScrolled] = useState(false);
+  const text = "Welcome to my Universe";
 
   useEffect(() => {
     const onScroll = () => {
@@ -31,6 +33,15 @@ export const NavBar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, [])
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (textIndex < text.length) {
+        setTextIndex(textIndex + 10);
+      }
+    }, 10);
+    return () => clearInterval(interval);
+  }, [textIndex]);
+
   const onUpdateActiveLink = (value) => {
     setActiveLink(value);
   }
@@ -45,24 +56,31 @@ export const NavBar = () => {
           alt="Left Logo"
           className="logo-image"
           initial={{ x: 0 }}
-          animate={{ x: -50 }}
-          transition={{ duration: 2 }}
+          animate={{ x: -20 }}
+          transition={{ delay: 2.3, duration: 2 }}
         />
+        {text.slice(0, textIndex).split('').map((letter, index) => (
         <motion.span
           className="logo-text"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 3 }}
+          initial={{ opacity: 0, x: -10, width: 0 }}
+          animate={{ opacity: 1, x: 0, width: 'auto' }}
+          transition={{
+            delay: index * 0.1,
+            duration: 0.05,
+            ease: "easeOut",
+          }}
+          style={{ display: 'inline-block' }}
         >
-          Welcome to Rusmir's Universe
+          {letter}
         </motion.span>
+      ))}
         <motion.img
           src={rightTag}
           alt="Right Logo"
           className="logo-image"
           initial={{ x: 0 }}
-          animate={{ x: 50 }}
-          transition={{ duration: 2 }}
+          animate={{ x: 20 }}
+          transition={{ delay: 2.3, duration: 2 }}
           style={{width: '33px', height: '27px'}}
         />
       </div>
